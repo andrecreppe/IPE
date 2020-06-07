@@ -17,8 +17,11 @@ class Time(object):
     def getHour(self):
         return self.hr
 
+    def formatNumber(self, num):
+        return "{:02d}".format(num)
+
     def __str__(self):
-        return str(self.getHour()) + ":" + str(self.getMin()) + ":" + str(self.getSec())
+        return self.formatNumber(self.getHour()) + ":" + self.formatNumber(self.getMin()) + ":" + self.formatNumber(self.getSec())
 
 class Date(object):
     day:int = 0
@@ -39,12 +42,15 @@ class Date(object):
     def getYear(self):
         return self.yr
 
-    def __str__(self):
-        return str(self.getDay()) + "/" + str(self.getMon() + ":" + str(self.getYear())
+    def formatNumber(self, num):
+        return "{:02d}".format(num)
 
-class Reminders(object):
-    time:Time = null
-    date:Date = null
+    def __str__(self):
+        return self.formatNumber(self.getDay()) + "/" + self.formatNumber(self.getMon()) + "/" + self.formatNumber(self.getYear())
+
+class Reminder(object):
+    time:Time = None
+    date:Date = None
     task:str = ""
 
     def setTime(self, tm):
@@ -62,12 +68,32 @@ class Reminders(object):
         return self.task
 
     def __str__(self):
-        output = str(self.getDate()) + "  - " + str(self.getTime())
+        output = str(self.getDate()) + " - " + str(self.getTime())
         output += "\n" + self.getTask()
         return output
 
 #Main
+calendar = []
+
 qtd = int(input())
 
-for i in range(qtd)
+for i in range(qtd):
     dayData = Date()
+    dayData.setDay(int(input()))
+    dayData.setMon(int(input()))
+    dayData.setYear(int(input()))
+
+    timeData = Time()
+    timeData.setHour(int(input()))
+    timeData.setMin(int(input()))
+    timeData.setSec(int(input()))
+
+    reminder = Reminder()
+    reminder.setDate(dayData)
+    reminder.setTime(timeData)
+    reminder.setTask(input())
+
+    calendar.append(reminder)
+
+for event in calendar:
+    print(event)
