@@ -8,7 +8,8 @@ class Funcionario (object):
         self.salario = salario
 
 #Main
-f = open("b:/Programming/IPE/Lista 6/dados-funcionario.bin", "rb")
+#f = open("b:\\Programming\\IPE\\Lista 6\\dados-funcionario.bin", "rb")
+f = open("dados-funcionario.bin", "rb")
 
 total = pk.load(f)
 
@@ -20,11 +21,11 @@ sumSalW = 0
 for i in range(total):
     line = pk.load(f)
 
-    if(line.sexo == 'M'):
-        tM += 1
+    if(line.sexo == 'm'):
+        totM += 1
         sumSalM += line.salario
     else:
-        tW += 1
+        totW += 1
         sumSalW += line.salario
 
 f.close()
